@@ -321,7 +321,7 @@ body.dark-mode .new-carousel-dot {
 }
 
 body.dark-mode .new-carousel-dot.active {
-    background-color: #fff;
+    background-color: #28a745;
 }
 /* --- FIM NOVO CARROSSEL CSS --- */
 
@@ -682,27 +682,28 @@ body.dark-mode .new-carousel-dot.active {
 }
 
 .btn-dark-mode {
-    background-color: #343a40;
-    color: white;
+    background: none;
     border: none;
-    padding: 12px 25px;
-    border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: background-color 0.3s;
+    padding: 6px 10px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
+    transition: background-color 0.3s, color 0.3s;
+    color: #333; /* Cor padrão do ícone */
+    font-size: 1.2em;
 }
 
-.btn-dark-mode i {
-    margin-right: 10px;
+.btn-dark-mode svg {
+    width: 24px;
+    height: 24px;
+    display: block;
 }
 
 .btn-dark-mode:hover {
-    background-color: #23272b;
+    background-color: #e0e0e0;
+    color: #28a745; /* Verde do tema */
 }
 
 /* Rodapé */
@@ -861,21 +862,27 @@ body.dark-mode .new-carousel-dot.active {
 
 /* Estilos do Modo Escuro */
 body.dark-mode {
-    background-color: #121212;
+    background-color: #181a1b;
     color: #e0e0e0;
 }
 
+/* Header, Navbar, Secondary Nav, Modal, Cards, Seções */
 body.dark-mode .top-bar,
 body.dark-mode .navbar,
 body.dark-mode .secondary-nav,
 body.dark-mode .modal-content,
 body.dark-mode .explore-categories .category-item,
 body.dark-mode .product-card,
-body.dark-mode .dark-mode-section {
-    background-color: #1e1e1e;
-    box-shadow: 0 2px 8px rgba(255,255,255,0.05);
+body.dark-mode .dark-mode-section,
+body.dark-mode .mega-promo-section,
+body.dark-mode .highlight-categories-small,
+body.dark-mode .main-footer {
+    background-color: #232526;
+    color: #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
+/* Títulos e textos principais */
 body.dark-mode .logo,
 body.dark-mode .nav-links a,
 body.dark-mode .nav-links a i,
@@ -885,36 +892,184 @@ body.dark-mode .explore-categories h2,
 body.dark-mode .explore-categories p,
 body.dark-mode .product-card h3,
 body.dark-mode .dark-mode-section h2,
-body.dark-mode .dark-mode-section p {
+body.dark-mode .dark-mode-section p,
+body.dark-mode .main-footer,
+body.dark-mode .footer-column h3,
+body.dark-mode .footer-column p {
     color: #e0e0e0;
 }
 
-body.dark-mode .product-card .product-price,
-body.dark-mode .btn-secondary {
-    color: #28a745;
+/* Cards e botões */
+body.dark-mode .category-item,
+body.dark-mode .product-card,
+body.dark-mode .dark-mode-section {
+    background-color: #232526;
+    color: #e0e0e0;
+    border: 1px solid #333;
 }
 
-body.dark-mode .product-card .product-price .old-price,
-body.dark-mode .nav-links a {
-    color: #a0a0a0;
+body.dark-mode .btn,
+body.dark-mode .btn-primary,
+body.dark-mode .btn-green,
+body.dark-mode .btn-green-small,
+body.dark-mode .btn-add-to-cart,
+body.dark-mode .carousel-action-btn,
+body.dark-mode .btn-dark-mode {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
 }
 
-body.dark-mode .btn-secondary {
-    border-color: #a0a0a0;
+body.dark-mode .btn-secondary,
+body.dark-mode .btn-secondary.inverted {
+    background-color: transparent;
+    color: #e0e0e0;
+    border: 1px solid #555;
 }
 
+body.dark-mode .btn-dark-mode {
+    background-color: #23272b;
+    color: #fff;
+}
+
+body.dark-mode .btn-dark-mode:hover {
+    background-color: #28a745;
+    color: #fff;
+}
+
+/* Inputs e campos */
 body.dark-mode .search-bar input,
 body.dark-mode .form-group input {
-    background-color: #333;
+    background-color: #232526;
     border-color: #555;
     color: #fff;
 }
 
-body.dark-mode .social-icons a,
-body.dark-mode .footer-column a {
+/* Badge do carrinho */
+body.dark-mode .cart-badge {
+    background-color: #28a745;
     color: #fff;
+}
+
+/* Modal */
+body.dark-mode .modal-content {
+    background-color: #232526;
+    color: #e0e0e0;
+    border: 1px solid #333;
+}
+
+/* Footer */
+body.dark-mode .main-footer,
+body.dark-mode .footer-content,
+body.dark-mode .footer-column {
+    background-color: #232526;
+    color: #e0e0e0;
+}
+
+body.dark-mode .footer-column a,
+body.dark-mode .social-icons a {
+    color: #e0e0e0;
+}
+
+body.dark-mode .footer-column a:hover,
+body.dark-mode .social-icons a:hover {
+    color: #28a745;
+}
+
+/* Carrossel */
+body.dark-mode .new-carousel-btn {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #fff;
+}
+
+body.dark-mode .new-carousel-btn:hover {
+    background-color: rgba(40, 167, 69, 0.4);
+}
+
+body.dark-mode .new-carousel-dot {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .new-carousel-dot.active {
+    background-color: #28a745;
+}
+
+/* Cards de produto */
+body.dark-mode .product-card .product-price {
+    color: #28a745;
+}
+
+body.dark-mode .product-card .product-price .old-price {
+    color: #a0a0a0;
 }
 
 body.dark-mode .wishlist-btn {
     color: #a0a0a0;
+}
+
+body.dark-mode .wishlist-btn:hover {
+    color: #28a745;
+}
+
+/* Seção Mega Promoção */
+body.dark-mode .mega-promo-section {
+    background-color: #232526;
+    color: #e0e0e0;
+}
+
+body.dark-mode .flash-sale-tag {
+    background-color: #28a745;
+    color: #fff;
+}
+
+body.dark-mode .btn-secondary.inverted {
+    background-color: #232526;
+    color: #fff;
+    border: 1px solid #28a745;
+}
+
+body.dark-mode .btn-secondary.inverted:hover {
+    background-color: #28a745;
+    color: #fff;
+}
+
+/* Modal close button */
+body.dark-mode .close-btn {
+    color: #e0e0e0;
+}
+
+body.dark-mode .close-btn:hover,
+body.dark-mode .close-btn:focus {
+    color: #28a745;
+}
+
+/* Ajuste para textos secundários */
+body.dark-mode .product-category,
+body.dark-mode .product-rating span,
+body.dark-mode .category-item span,
+body.dark-mode .promo-description,
+body.dark-mode .timer {
+    color: #a0a0a0;
+}
+
+/* Estilo para o container do botão dark mode */
+.darkmode-container {
+    display: flex;
+    align-items: center;
+    margin-left: 20px; /* Espaço à esquerda, ajuste conforme necessário */
+}
+
+/* Botão dark mode */
+.btn-dark-mode {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+    color: #333; /* Cor padrão do ícone */
+    font-size: 1.2em;
 }

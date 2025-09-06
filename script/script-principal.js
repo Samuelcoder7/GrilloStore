@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const addToCartButtons = document.querySelectorAll('.btn-add-to-cart'); // Botões de adicionar ao carrinho
     const darkModeButton = document.querySelector('.btn-dark-mode'); // Botão de modo escuro
-    const body = document.body; // Referência ao body para aplicar o modo escuro
+    // const body = document.body; // Referência ao body para aplicar o modo escuro (removido para evitar redeclaração)
 
     // --- Funções Auxiliares ---
     const showModal = (e) => {
@@ -267,4 +267,86 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Redirecionando para o Carrinho de Compras.');
         // window.location.href = '/carrinho.html';
     });
+
+    // --- MODO ESCURO ---
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const moonIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+    const sunIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
+
+    function enableDarkMode() {
+        body.classList.add('dark-mode');
+        darkModeToggle.innerHTML = sunIcon;
+        localStorage.setItem('darkMode', 'enabled');
+        const darkModeSection = document.querySelector('.dark-mode-section h2');
+        if (darkModeSection) darkModeSection.innerText = 'Dark Mode Ativado';
+    }
+
+    function disableDarkMode() {
+        body.classList.remove('dark-mode');
+        darkModeToggle.innerHTML = moonIcon;
+        localStorage.setItem('darkMode', 'disabled');
+        const darkModeSection = document.querySelector('.dark-mode-section h2');
+        if (darkModeSection) darkModeSection.innerText = 'Dark Mode Desativado';
+    }
+
+    // Estado inicial
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+
+    // Alternância
+    darkModeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+    });
+
+    // ...restante do seu código...
+});
+
+// --- Modo Escuro --- 
+
+// Seleciona o botão de alternância do modo escuro
+const darkModeToggle = document.getElementById('darkModeToggle');
+// Seleciona o elemento body para aplicar a classe de modo escuro
+const body = document.body;
+// Seleciona os ícones de lua e sol para alternar
+const moonIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+const sunIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
+
+// Função para aplicar o modo escuro
+function enableDarkMode() {
+    body.classList.add('dark-mode'); // Adiciona a classe 'dark-mode' ao body
+    darkModeToggle.innerHTML = sunIcon; // Muda o ícone para o sol
+    localStorage.setItem('darkMode', 'enabled'); // Salva a preferência no localStorage
+}
+
+// Função para desativar o modo escuro
+function disableDarkMode() {
+    body.classList.remove('dark-mode'); // Remove a classe 'dark-mode' do body
+    darkModeToggle.innerHTML = moonIcon; // Muda o ícone para a lua
+    localStorage.setItem('darkMode', 'disabled'); // Salva a preferência no localStorage
+}
+
+// Verifica se o modo escuro estava habilitado ao carregar a página
+if (localStorage.getItem('darkMode') === 'enabled') {
+    enableDarkMode();
+} else {
+    // Se não estiver habilitado, garante que o ícone inicial seja a lua
+    darkModeToggle.innerHTML = moonIcon;
+}
+
+// Adiciona um "event listener" ao botão de alternância
+darkModeToggle.addEventListener('click', () => {
+    // Verifica se o body já tem a classe 'dark-mode'
+    if (body.classList.contains('dark-mode')) {
+        disableDarkMode(); // Se sim, desativa o modo escuro
+    } else {
+        enableDarkMode(); // Se não, ativa o modo escuro
+    }
 });

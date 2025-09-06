@@ -1,0 +1,695 @@
+/* Reset básico e fontes */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5; /* Cor de fundo padrão (modo claro) */
+    color: #333;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave para modo escuro */
+}
+
+/* Estilos para o modo escuro */
+body.dark-mode {
+    background-color: #1a1a1a; /* Fundo escuro */
+    color: #e0e0e0; /* Texto claro */
+}
+
+/* Cabeçalho */
+.header {
+    background-color: #61A400; /* Verde do cabeçalho */
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra sutil */
+}
+
+/* Estilos para o modo escuro no header */
+body.dark-mode .header {
+    background-color: #4CAF50; /* Verde um pouco mais escuro para o modo escuro */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+/* Estilos para o modo escuro no logo */
+body.dark-mode .logo {
+    color: #f0f0f0;
+}
+
+/* Container para ações no header (botão dark mode e carrinho) */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaço entre o botão dark mode e o carrinho */
+}
+
+/* Botão de Dark Mode */
+.dark-mode-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex; /* Para centralizar o ícone */
+    align-items: center;
+    justify-content: center;
+    color: white; /* Cor do ícone no modo claro */
+    transition: color 0.3s ease;
+}
+
+/* Estilos para o modo escuro no botão dark mode */
+body.dark-mode .dark-mode-button {
+    color: #e0e0e0; /* Cor do ícone no modo escuro */
+}
+
+.dark-mode-button svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Ícone do carrinho */
+.cart-icon {
+    color: white; /* Cor do ícone no modo claro */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Estilos para o modo escuro no ícone do carrinho */
+body.dark-mode .cart-icon {
+    color: #e0e0e0;
+}
+
+.cart-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Container principal da página do produto */
+.product-page-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white; /* Fundo branco padrão */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transição para modo escuro */
+}
+
+/* Estilos para o modo escuro no container principal */
+body.dark-mode .product-page-container {
+    background-color: #2b2b2b; /* Fundo mais escuro para o container */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Sombra mais pronunciada */
+}
+
+/* Seção de display do produto (imagens + detalhes) */
+.product-display {
+    display: flex;
+    flex: 2; /* Ocupa mais espaço */
+    gap: 20px;
+}
+
+.product-images {
+    display: flex;
+    gap: 10px;
+}
+
+.thumbnail-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    object-fit: contain;
+    transition: border-color 0.2s ease;
+}
+
+/* Estilos para o modo escuro nas miniaturas */
+body.dark-mode .thumbnail {
+    border-color: #444;
+}
+
+.thumbnail.active {
+    border-color: #61A400; /* Borda verde para a miniatura selecionada */
+}
+
+/* Estilos para o modo escuro na miniatura ativa */
+body.dark-mode .thumbnail.active {
+    border-color: #8BC34A; /* Verde mais claro para o modo escuro */
+}
+
+.main-image-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white; /* Fundo padrão para a imagem principal */
+    border-radius: 4px;
+    border: 1px solid #eee;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Estilos para o modo escuro no container da imagem principal */
+body.dark-mode .main-image-container {
+    background-color: #333; /* Fundo mais escuro */
+    border-color: #555;
+}
+
+.main-product-image {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove espaço extra abaixo da imagem */
+    border-radius: 4px;
+    object-fit: contain; /* Mantém a proporção da imagem */
+}
+
+.product-info-details {
+    flex: 3; /* Ocupa mais espaço que as imagens */
+}
+
+.product-title {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Estilos para o modo escuro no título do produto */
+body.dark-mode .product-title {
+    color: #e0e0e0;
+}
+
+.price-section {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Estilos para o modo escuro na seção de preço */
+body.dark-mode .price-section {
+    border-bottom-color: #444;
+}
+
+.price-label {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* Estilos para o modo escuro no label de preço */
+body.dark-mode .price-label {
+    color: #bbb;
+}
+
+.price-value {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+/* Estilos para o modo escuro no valor do preço */
+body.dark-mode .price-value {
+    color: #f0f0f0;
+}
+
+.installments {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Estilos para o modo escuro nas parcelas */
+body.dark-mode .installments {
+    color: #ccc;
+}
+
+.installments-text {
+    font-size: 0.85em;
+    color: #777;
+}
+
+/* Estilos para o modo escuro no texto das parcelas */
+body.dark-mode .installments-text {
+    color: #aaa;
+}
+
+.payment-methods-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.2s ease;
+}
+
+/* Estilos para o modo escuro nos links de pagamento */
+body.dark-mode .payment-methods-link {
+    color: #4dabf7; /* Azul mais claro para modo escuro */
+}
+
+.payment-methods-link:hover {
+    text-decoration: underline;
+}
+
+.product-specs {
+    margin-top: 20px;
+}
+
+.spec-color {
+    font-size: 1em;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Estilos para o modo escuro na especificação de cor */
+body.dark-mode .spec-color {
+    color: #e0e0e0;
+}
+
+.spec-value {
+    font-weight: normal;
+}
+
+.specs-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Estilos para o modo escuro no título das especificações */
+body.dark-mode .specs-title {
+    color: #e0e0e0;
+}
+
+.specs-list {
+    list-style: disc;
+    margin-left: 20px;
+    font-size: 0.95em;
+    color: #555;
+}
+
+/* Estilos para o modo escuro na lista de especificações */
+body.dark-mode .specs-list {
+    color: #ccc;
+}
+
+.specs-list li {
+    margin-bottom: 8px;
+}
+
+/* Barra lateral de compra */
+.purchase-sidebar {
+    flex: 1; /* Ocupa menos espaço, à direita */
+    border-left: 1px solid #eee;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: border-color 0.3s ease;
+}
+
+/* Estilos para o modo escuro na barra lateral */
+body.dark-mode .purchase-sidebar {
+    border-left-color: #444;
+}
+
+.sidebar-price-block {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    transition: border-color 0.3s ease;
+}
+
+/* Estilos para o modo escuro no bloco de preço da barra lateral */
+body.dark-mode .sidebar-price-block {
+    border-bottom-color: #444;
+}
+
+.current-price-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.current-price {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #000;
+}
+
+/* Estilos para o modo escuro no preço atual */
+body.dark-mode .current-price {
+    color: #f0f0f0;
+}
+
+.price-option-radio {
+    position: relative;
+    cursor: pointer;
+    font-size: 0.9em;
+    display: inline-flex;
+    align-items: center;
+}
+
+.price-option-radio input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc; /* Borda padrão para radio */
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    margin-left: 8px;
+    transition: border-color 0.2s ease;
+}
+
+/* Estilos para o modo escuro nos radios */
+body.dark-mode .price-option-radio input {
+    border-color: #777;
+}
+
+.price-option-radio input:checked {
+    border-color: #61A400; /* Borda verde quando selecionado */
+}
+
+/* Estilos para o modo escuro no radio selecionado */
+body.dark-mode .price-option-radio input:checked {
+    border-color: #8BC34A; /* Verde mais claro quando selecionado no modo escuro */
+}
+
+.price-option-radio input:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #61A400; /* Preenchimento verde quando selecionado */
+}
+
+/* Estilos para o modo escuro no preenchimento do radio selecionado */
+body.dark-mode .price-option-radio input:checked::before {
+    background-color: #8BC34A; /* Verde mais claro quando selecionado no modo escuro */
+}
+
+
+.free-shipping {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #61A400; /* Verde do frete grátis */
+    margin-bottom: 5px;
+}
+
+/* Estilos para o modo escuro no frete grátis */
+body.dark-mode .free-shipping {
+    color: #8BC34A; /* Verde mais claro para modo escuro */
+}
+
+.delivery-estimate {
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Estilos para o modo escuro na estimativa de entrega */
+body.dark-mode .delivery-estimate {
+    color: #bbb;
+}
+
+.installments-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.installment-amount {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Estilos para o modo escuro no valor da parcela */
+body.dark-mode .installment-amount {
+    color: #e0e0e0;
+}
+
+.installment-details {
+    font-size: 0.9em;
+    color: #666;
+    margin-left: 5px;
+    flex-grow: 1;
+}
+
+/* Estilos para o modo escuro nos detalhes da parcela */
+body.dark-mode .installment-details {
+    color: #ccc;
+}
+
+
+.delivery-info-block {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    transition: border-color 0.3s ease;
+}
+
+/* Estilos para o modo escuro no bloco de informações de entrega */
+body.dark-mode .delivery-info-block {
+    border-bottom-color: #444;
+}
+
+.delivery-details-link {
+    font-size: 0.85em;
+    color: #007bff;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+    transition: color 0.2s ease;
+}
+
+/* Estilos para o modo escuro nos links de detalhes de entrega */
+body.dark-mode .delivery-details-link {
+    color: #4dabf7; /* Azul mais claro para modo escuro */
+}
+
+.delivery-details-link:hover {
+    text-decoration: underline;
+}
+
+.stock-status {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #61A400; /* Verde para "Estoque Disponível" */
+    margin-bottom: 15px;
+}
+
+/* Estilos para o modo escuro no status do estoque */
+body.dark-mode .stock-status {
+    color: #8BC34A; /* Verde mais claro */
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+/* Estilos para o modo escuro no seletor de quantidade */
+body.dark-mode .quantity-selector {
+    color: #e0e0e0;
+}
+
+.quantity-selector select {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 0.9em;
+    min-width: 100px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Estilos para o modo escuro no select de quantidade */
+body.dark-mode .quantity-selector select {
+    background-color: #333;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+/* Botões de ação */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.buy-now-button,
+.add-to-cart-button {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.1s ease; /* Adicionada transição para hover e active */
+}
+
+.buy-now-button {
+    background-color: #007bff; /* Azul */
+    color: white;
+}
+
+.buy-now-button:hover {
+    background-color: #0069d9;
+    transform: translateY(-1px); /* Leve efeito de elevação */
+}
+.buy-now-button:active {
+    transform: translateY(1px); /* Efeito de pressionar */
+}
+
+.add-to-cart-button {
+    background-color: #28a745; /* Verde */
+    color: white;
+}
+
+.add-to-cart-button:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+.add-to-cart-button:active {
+    transform: translateY(1px);
+}
+
+
+.seller-info {
+    text-align: center;
+    margin-top: auto; /* Empurra para baixo se houver espaço */
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 0.9em;
+    color: #666;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilos para o modo escuro nas informações do vendedor */
+body.dark-mode .seller-info {
+    border-top-color: #444;
+    color: #bbb;
+}
+
+.seller-name {
+    font-weight: bold;
+}
+
+/* Responsividade Básica */
+@media (max-width: 992px) {
+    .product-page-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-display {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .product-images {
+        flex-direction: row; /* Miniaturas lado a lado em telas médias */
+        width: 100%;
+        justify-content: center;
+        gap: 15px; /* Espaço maior entre as miniaturas */
+    }
+
+    .main-image-container {
+        width: 80%; /* Reduz a largura para acomodar */
+        max-width: 450px; /* Mantém um limite de tamanho */
+    }
+
+    .product-info-details {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .purchase-sidebar {
+        border-left: none;
+        border-top: 1px solid #eee;
+        padding-left: 0;
+        padding-top: 20px;
+        width: 100%;
+        max-width: 400px; /* Limita a largura em telas menores */
+        transition: border-color 0.3s ease;
+    }
+
+    /* Estilos para o modo escuro na barra lateral em telas menores */
+    body.dark-mode .purchase-sidebar {
+        border-top-color: #444;
+    }
+
+    .thumbnail-gallery {
+        flex-direction: row; /* Miniaturas lado a lado */
+        justify-content: center; /* Centraliza as miniaturas */
+        flex-wrap: wrap; /* Permite que as miniaturas quebrem linha */
+        gap: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .logo {
+        font-size: 1.3em;
+    }
+    .product-page-container {
+        padding: 10px;
+        margin: 10px auto;
+    }
+    .product-display {
+        gap: 10px;
+    }
+
+    .main-image-container {
+        width: 95%; /* Aumenta um pouco mais a largura da imagem principal */
+        max-width: 100%;
+        margin: 0 auto; /* Centraliza */
+    }
+
+    .product-title {
+        font-size: 1.3em;
+    }
+    .price-value {
+        font-size: 1.5em;
+    }
+    .buy-now-button,
+    .add-to-cart-button {
+        font-size: 1em;
+        padding: 10px;
+    }
+}
