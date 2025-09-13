@@ -306,7 +306,68 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ...restante do seu código...
+    // Seleciona o formulário de login do modal
+    // const loginForm = document.querySelector('#login-modal form'); // Removido para evitar redeclaração
+    const emailInput = loginForm.querySelector('#email');
+    const passwordInput = loginForm.querySelector('#password');
+
+    // Funções de exibição de erro/sucesso
+    function showError(input, message) {
+        let small = input.parentElement.querySelector('small');
+        if (!small) {
+            small = document.createElement('small');
+            input.parentElement.appendChild(small);
+        }
+        small.textContent = message;
+        input.classList.add('error');
+    }
+
+    function showSuccess(input) {
+        let small = input.parentElement.querySelector('small');
+        if (small) small.textContent = '';
+        input.classList.remove('error');
+    }
+
+    // Validação de e-mail
+    function validateEmail(input) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (re.test(input.value.trim())) {
+            showSuccess(input);
+            return true;
+        } else {
+            showError(input, 'Email inválido');
+            return false;
+        }
+    }
+
+    // Validação de senha
+    function validatePassword(input) {
+        const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+        if (re.test(input.value.trim())) {
+            showSuccess(input);
+            return true;
+        } else {
+            showError(input, 'A senha deve ter no mínimo 8 caracteres, incluindo maiúsculas, minúsculas, números e um caractere especial');
+            return false;
+        }
+    }
+
+    // Validação em tempo real
+    emailInput.addEventListener('input', () => validateEmail(emailInput));
+    passwordInput.addEventListener('input', () => validatePassword(passwordInput));
+
+    // Validação ao enviar
+    loginForm.addEventListener('submit', (e) => {
+        let isFormValid = true;
+        isFormValid = validateEmail(emailInput) && isFormValid;
+        isFormValid = validatePassword(passwordInput) && isFormValid;
+
+        if (!isFormValid) {
+            e.preventDefault();
+        } else {
+            alert('Login simulado com sucesso! (Sem backend)');
+        }
+    });
 });
 
 // --- Modo Escuro --- 
