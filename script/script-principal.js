@@ -1,413 +1,426 @@
+// Espera o DOM (Document Object Model) ser completamente carregado antes de executar o script
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- CÓDIGO DO NOVO CARROSSEL ---
+    // Seleciona os elementos do carrossel
     const newCarouselTrack = document.querySelector('.new-carousel-track');
     const newSlides = document.querySelectorAll('.new-carousel-slide');
     const newPrevBtn = document.querySelector('.new-prev-btn');
     const newNextBtn = document.querySelector('.new-next-btn');
     const newCarouselDotsContainer = document.querySelector('.new-carousel-dots');
 
-    let newCurrentSlideIndex = 0;
-    const newSlideWidth = newSlides[0].clientWidth; // Largura de um slide
-    let newAutoPlayInterval;
+    let newCurrentSlideIndex = 0; // Índice do slide atual
+    // let newSlideWidth = newSlides[0].clientWidth; // Largura de um slide (não usado diretamente no JS atual)
+    let newAutoPlayInterval; // Variável para armazenar o intervalo do auto-play
 
-    // Criar os pontos indicadores
+    // Função para criar os pontos indicadores (bolinhas) do carrossel
     function createNewDots() {
         newSlides.forEach((_, index) => {
-            const dot = document.createElement('span');
-            dot.classList.add('new-carousel-dot');
+            const dot = document.createElement('span'); // Cria um elemento <span> para cada dot
+            dot.classList.add('new-carousel-dot'); // Adiciona a classe CSS para estilização
+            // Define o dot ativo se for o slide atual
             if (index === newCurrentSlideIndex) {
                 dot.classList.add('active');
             }
+            // Adiciona um listener de clique para cada dot
             dot.addEventListener('click', () => {
-                stopNewAutoPlay();
-                newCurrentSlideIndex = index;
-                updateNewCarousel();
-                startNewAutoPlay();
+                stopNewAutoPlay(); // Para o auto-play ao clicar em um dot
+                newCurrentSlideIndex = index; // Atualiza o slide atual
+                updateNewCarousel(); // Atualiza a exibição do carrossel
+                startNewAutoPlay(); // Reinicia o auto-play
             });
-            newCarouselDotsContainer.appendChild(dot);
+            newCarouselDotsContainer.appendChild(dot); // Adiciona o dot ao container
         });
     }
 
-    // Atualizar a posição do carrossel
+    // Função para atualizar a posição visual do carrossel e os dots ativos
     function updateNewCarousel() {
+        // Calcula o deslocamento em porcentagem para mover os slides
         const offset = -newCurrentSlideIndex * 100;
-        newCarouselTrack.style.transform = `translateX(${offset}%)`;
-        updateNewDots();
+        newCarouselTrack.style.transform = `translateX(${offset}%)`; // Aplica a transformação
+        updateNewDots(); // Atualiza quais dots estão ativos
     }
 
-    // Atualizar os pontos ativos
+    // Função para atualizar a classe 'active' nos dots indicadores
     function updateNewDots() {
-        const dots = document.querySelectorAll('.new-carousel-dot');
+        const dots = document.querySelectorAll('.new-carousel-dot'); // Seleciona todos os dots
         dots.forEach((dot, index) => {
+            // Adiciona ou remove a classe 'active' dependendo se o índice do dot corresponde ao slide atual
             dot.classList.toggle('active', index === newCurrentSlideIndex);
         });
     }
 
-    // Avançar para o próximo slide
+    // Função para avançar para o próximo slide
     function nextNewSlide() {
-        newCurrentSlideIndex++;
+        newCurrentSlideIndex++; // Incrementa o índice
+        // Volta para o primeiro slide se chegar ao final
         if (newCurrentSlideIndex >= newSlides.length) {
             newCurrentSlideIndex = 0;
         }
-        updateNewCarousel();
+        updateNewCarousel(); // Atualiza a exibição
     }
 
-    // Voltar para o slide anterior
+    // Função para voltar para o slide anterior
     function prevNewSlide() {
-        newCurrentSlideIndex--;
+        newCurrentSlideIndex--; // Decrementa o índice
+        // Volta para o último slide se estiver no primeiro
         if (newCurrentSlideIndex < 0) {
             newCurrentSlideIndex = newSlides.length - 1;
         }
-        updateNewCarousel();
+        updateNewCarousel(); // Atualiza a exibição
     }
 
-    // Iniciar auto-play
+    // Função para iniciar o auto-play do carrossel
     function startNewAutoPlay() {
-        newAutoPlayInterval = setInterval(nextNewSlide, 5000); // Muda a cada 5 segundos
+        // Define um intervalo para chamar nextNewSlide a cada 5000 milissegundos (5 segundos)
+        newAutoPlayInterval = setInterval(nextNewSlide, 5000);
     }
 
-    // Parar auto-play
+    // Função para parar o auto-play
     function stopNewAutoPlay() {
-        clearInterval(newAutoPlayInterval);
+        clearInterval(newAutoPlayInterval); // Limpa o intervalo
     }
 
-    // Event Listeners para os botões do carrossel
+    // Adiciona listeners de evento para os botões de navegação do carrossel
     newNextBtn.addEventListener('click', () => {
-        stopNewAutoPlay();
-        nextNewSlide();
-        startNewAutoPlay();
+        stopNewAutoPlay(); // Para o auto-play
+        nextNewSlide(); // Avança para o próximo slide
+        startNewAutoPlay(); // Reinicia o auto-play
     });
 
     newPrevBtn.addEventListener('click', () => {
-        stopNewAutoPlay();
-        prevNewSlide();
-        startNewAutoPlay();
+        stopNewAutoPlay(); // Para o auto-play
+        prevNewSlide(); // Volta para o slide anterior
+        startNewAutoPlay(); // Reinicia o auto-play
     });
 
-    // Inicialização do carrossel
+    // Inicializa o carrossel se houver slides
     if (newSlides.length > 0) {
-        createNewDots();
-        updateNewCarousel();
-        startNewAutoPlay();
+        createNewDots(); // Cria os pontos indicadores
+        updateNewCarousel(); // Garante que o primeiro slide seja exibido corretamente
+        startNewAutoPlay(); // Inicia o auto-play
     }
     // --- FIM DO CÓDIGO DO NOVO CARROSSEL ---
 
 
-    // --- CÓDIGO DA PÁGINA PRINCIPAL ---
-    
+    // --- CÓDIGO DA PÁGINA PRINCIPAL E NOVAS FUNÇÕES ---
+
     // --- Elementos da Interface ---
+    // Modais e seus botões de fechar
     const loginModal = document.getElementById('login-modal');
-    const closeBtn = document.querySelector('.close-btn');
+    const cepModal = document.getElementById('cep-modal'); // Novo modal para CEP
+    const closeLoginBtn = document.querySelector('#login-modal .close-btn');
+    const closeCepBtn = document.getElementById('close-cep-modal');
 
-    const loginBtn = document.querySelector('.btn-secondary');
-    const signupBtn = document.querySelector('.btn-primary');
-    const accountLink = document.querySelector('.nav-links li:nth-child(1) a');
-    const cartLink = document.querySelector('.cart-link a');
-    
-    const searchForm = document.querySelector('.search-bar'); // Mudado para o form
+    // Botões de navegação e ação
+    const loginBtn = document.getElementById('login-btn'); // Referência ao botão de Login
+    const signupBtn = document.querySelector('.btn-primary'); // Botão de Cadastro
+    const headerCepBtn = document.getElementById('header-cep-btn'); // Novo botão para abrir o modal de CEP no header
+
+    // Elementos do formulário de CEP
+    const cepInput = document.getElementById('cep');
+    const cepForm = document.getElementById('cep-form');
+    const ruaInput = document.getElementById('rua');
+    const numeroInput = document.getElementById('numero'); // Novo campo para número
+    const bairroInput = document.getElementById('bairro');
+    const cidadeInput = document.getElementById('cidade');
+    const estadoInput = document.getElementById('estado');
+
+    // Barra de pesquisa e botões de categoria
+    const searchForm = document.querySelector('.search-bar');
     const searchInput = document.querySelector('.search-bar input');
-
     const categoryItems = document.querySelectorAll('.category-item');
-    const loginForm = document.querySelector('#login-modal form');
 
-    const addToCartButtons = document.querySelectorAll('.btn-add-to-cart'); // Botões de adicionar ao carrinho
-    const darkModeButton = document.querySelector('.btn-dark-mode'); // Botão de modo escuro
-    // const body = document.body; // Referência ao body para aplicar o modo escuro (removido para evitar redeclaração)
+    // Formulário de login e botões de adicionar ao carrinho
+    const loginForm = document.getElementById('login-form'); // ID correto para o formulário de login
+    const addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
+
+    // Botão de modo escuro
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body; // Referência ao elemento body
+
+    // Ícones para o modo escuro (usando os mesmos do HTML original)
+    const moonIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16"><path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286"/></svg>';
+    const sunIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sun" viewBox="0 0 16 16"><path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6m0 1a4 4 0 1 1 0-8 4 4 0 0 1 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.65-5.65a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193-9.193a.5.5 0 0 1 .707 0l1.414 1.414a.5.5 0 0 1-.707.707L12.657 4.343a.5.5 0 0 1 0-.707m-9.193 9.193a.5.5 0 0 1 .707 0l1.414 1.414a.5.5 0 0 1-.707.707l-1.414-1.414a.5.5 0 0 1 0-.707"/></svg>';
 
     // --- Funções Auxiliares ---
-    const showModal = (e) => {
-        e.preventDefault(); // Evita que o link tente navegar
-        loginModal.classList.add('show');
+    // Função genérica para mostrar modais
+    const showModal = (modalElement, event = null) => {
+        if (event) event.preventDefault(); // Previne a ação padrão do link/botão se um evento for passado
+        modalElement.classList.add('show'); // Adiciona a classe 'show' para exibir o modal
     };
-    const hideModal = () => loginModal.classList.remove('show');
+    // Função genérica para esconder modais
+    const hideModal = (modalElement) => {
+        modalElement.classList.remove('show'); // Remove a classe 'show' para esconder o modal
+        // Limpa os campos do modal de CEP ao fechar, para uma nova consulta limpa
+        if (modalElement === cepModal) {
+            cepForm.reset(); // Reseta o formulário
+            // Limpa os campos preenchidos automaticamente
+            ruaInput.value = '';
+            bairroInput.value = '';
+            cidadeInput.value = '';
+            estadoInput.value = '';
+        }
+    };
+
+    // Função para buscar CEP usando a API ViaCEP
+    async function searchCep(cep) {
+        cep = cep.replace(/\D/g, ''); // Remove caracteres não numéricos do CEP
+        if (cep.length !== 8) {
+            // Retorna um objeto de erro se o CEP não tiver 8 dígitos
+            return { error: 'CEP inválido. Por favor, insira 8 dígitos.' };
+        }
+
+        try {
+            // Realiza a requisição para a API ViaCEP
+            const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            // Verifica se a requisição foi bem-sucedida
+            if (!response.ok) {
+                throw new Error('Erro na comunicação com a API.');
+            }
+            const data = await response.json(); // Converte a resposta para JSON
+            // Verifica se a API retornou um erro indicando que o CEP não foi encontrado
+            if (data.erro) {
+                return { error: 'CEP não encontrado. Verifique o número e tente novamente.' };
+            }
+            // Retorna os dados do endereço encontrados
+            return data;
+        } catch (error) {
+            console.error('Falha na busca de CEP:', error);
+            // Retorna um erro genérico em caso de falha na requisição
+            return { error: 'Erro de comunicação. Tente novamente mais tarde.' };
+        }
+    }
 
     // --- Lógica de Eventos ---
 
-    // Abertura e fechamento do modal de login/cadastro
-    loginBtn.addEventListener('click', showModal);
-    signupBtn.addEventListener('click', showModal);
-    closeBtn.addEventListener('click', hideModal);
-    
-    // Fechar o modal clicando fora da janela de conteúdo
+    // Event Listeners para abrir/fechar modais
+    loginBtn.addEventListener('click', (e) => showModal(loginModal, e)); // Abre o modal de login
+    signupBtn.addEventListener('click', (e) => { // Redireciona para a página de cadastro
+        e.preventDefault();
+        window.location.href = '../paginas/cadastro.html';
+    });
+    headerCepBtn.addEventListener('click', (e) => showModal(cepModal, e)); // Abre o modal de CEP
+    closeLoginBtn.addEventListener('click', () => hideModal(loginModal)); // Fecha o modal de login
+    closeCepBtn.addEventListener('click', () => hideModal(cepModal)); // Fecha o modal de CEP
+
+    // Fecha modais se o usuário clicar fora da área de conteúdo
     window.addEventListener('click', (e) => {
-        if (e.target === loginModal) {
-            hideModal();
+        if (e.target === loginModal) { // Se o clique foi no fundo do modal de login
+            hideModal(loginModal);
+        }
+        if (e.target === cepModal) { // Se o clique foi no fundo do modal de CEP
+            hideModal(cepModal);
         }
     });
 
-    // Lida com o envio do formulário de login (sem banco de dados)
+    // Manipula o envio do formulário de login
     loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Previne o envio padrão do formulário
+        console.log('Dados do formulário de login prontos para serem enviados ao backend.');
 
-        const email = loginForm.email.value;
-        const password = loginForm.password.value;
-        
-        console.log('Dados do formulário prontos para serem enviados ao backend.');
-        
-        // Simulação de chamada de API
-        try {
-            // Em um ambiente real, você faria uma requisição fetch ou axios aqui
-            // Ex: const response = await fetch('/api/login', { ... });
-            // Por enquanto, vamos simular uma resposta
-            const simulatedResponse = {
-                ok: true,
-                json: async () => ({ message: 'Login simulado com sucesso!' })
-            };
+        // Simulação de chamada de API (substitua por uma chamada fetch real)
+        const simulatedResponse = {
+            ok: true, // Simula sucesso na autenticação
+            json: async () => ({ message: 'Login simulado com sucesso!' })
+        };
 
-            if (simulatedResponse.ok) {
-                const data = await simulatedResponse.json();
-                console.log('Resposta simulada:', data.message);
-                alert('Login bem-sucedido! Bem-vindo(a)!');
-                hideModal();
-            } else {
-                const errorData = await simulatedResponse.json();
-                console.error('Erro de login simulado:', errorData.message);
-                alert(`Erro de login: ${errorData.message}`);
-            }
-        } catch (error) {
-            console.error('Falha na simulação de comunicação:', error);
-            alert('Falha ao tentar simular login. Tente novamente.');
+        if (simulatedResponse.ok) {
+            console.log('Login bem-sucedido!');
+            hideModal(loginModal); // Fecha o modal de login
+            // Em um sistema real, aqui você poderia redirecionar o usuário ou atualizar a UI
+            // window.location.href = '/dashboard.html';
+            // alert('Login bem-sucedido! Bem-vindo(a)!'); // Substituído por lógica mais avançada
+        } else {
+            console.error('Erro de login simulado.');
+            // Exibir mensagem de erro para o usuário, talvez em um elemento HTML específico
+            // alert('Usuário ou senha inválidos.');
         }
     });
 
-    // Lida com a funcionalidade da barra de pesquisa
+    // Manipula o envio do formulário de CEP
+    cepForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Previne o envio padrão
+
+        const cepValue = cepInput.value; // Obtém o CEP digitado
+        const result = await searchCep(cepValue); // Chama a função de busca de CEP
+
+        if (result.error) {
+            // Se houver erro, exibe um pop-up informativo
+            displayInfoPopup(result.error, 'Erro de CEP');
+            return; // Interrompe a função
+        }
+
+        // Se o CEP for encontrado com sucesso, atualiza os campos e exibe um pop-up
+        ruaInput.value = result.logradouro || ''; // Preenche rua, se retornado
+        numeroInput.placeholder = 'Ex: 123'; // Mantém o placeholder para o número
+        bairroInput.value = result.bairro || ''; // Preenche bairro, se retornado
+        cidadeInput.value = result.localidade || ''; // Preenche cidade, se retornado
+        estadoInput.value = result.uf || ''; // Preenche estado, se retornado
+
+        // Exibe um pop-up informativo com os dados encontrados
+        displayInfoPopup(`Endereço encontrado: ${result.logradouro || 'N/A'}, ${result.localidade || 'N/A'} - ${result.uf || 'N/A'}`, 'Endereço Salvo');
+
+        hideModal(cepModal); // Fecha o modal de CEP após salvar
+    });
+
+    // Lógica para preencher automaticamente os campos de endereço ao perder o foco do input CEP
+    cepInput.addEventListener('blur', async () => {
+        const cepValue = cepInput.value.replace(/\D/g, ''); // Limpa o CEP
+        if (cepValue.length === 8) { // Verifica se tem 8 dígitos
+            const data = await searchCep(cepValue); // Busca o CEP
+            if (!data.error) {
+                // Se não houver erro, preenche os campos (exceto o número)
+                ruaInput.value = data.logradouro || '';
+                // O campo número deve ser preenchido manualmente pelo usuário
+                // Não preenchemos bairro, cidade e estado se o usuário já digitou algo,
+                // permitindo que ele corrija se a API trouxer algo diferente.
+                if (!bairroInput.value) bairroInput.value = data.bairro || '';
+                if (!cidadeInput.value) cidadeInput.value = data.localidade || '';
+                if (!estadoInput.value) estadoInput.value = data.uf || '';
+            } else {
+                // Se houver erro, limpa os campos de endereço para não confundir o usuário
+                ruaInput.value = '';
+                bairroInput.value = '';
+                cidadeInput.value = '';
+                estadoInput.value = '';
+                // O erro será exibido no submit do formulário, caso o usuário clique em "Salvar" sem corrigir.
+            }
+        } else {
+            // Se o CEP não tiver 8 dígitos ao perder o foco, limpa os campos de endereço
+            ruaInput.value = '';
+            bairroInput.value = '';
+            cidadeInput.value = '';
+            estadoInput.value = '';
+        }
+    });
+
+    // Manipula o envio do formulário de busca
     searchForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const query = searchInput.value.trim();
-        if (!query) return;
+        e.preventDefault(); // Previne o envio padrão
+        const query = searchInput.value.trim(); // Obtém o termo de busca
+        if (!query) return; // Se a busca estiver vazia, não faz nada
 
         console.log(`Buscando por: "${query}"`);
-
-        try {
-            // Simulação de chamada de API
-            const simulatedResponse = {
-                ok: true,
-                json: async () => ([
-                    { id: 1, name: 'Produto Encontrado 1' },
-                    { id: 2, name: 'Produto Encontrado 2' }
-                ])
-            };
-            
-            if (simulatedResponse.ok) {
-                const results = await simulatedResponse.json();
-                console.log('Resultados da busca simulados:', results);
-                alert(`Resultados para "${query}" obtidos (simulado).`);
-            } else {
-                 alert('Erro ao buscar produtos (simulado). Tente novamente.');
-            }
-        } catch (error) {
-            console.error('Falha na busca simulada:', error);
-            alert('Erro ao buscar produtos. Tente novamente.');
-        }
+        // Redireciona para uma página de resultados de busca (simulada)
+        window.location.href = `/busca?q=${encodeURIComponent(query)}`;
     });
-    
-    // Lida com o clique nas categorias
+
+    // Manipula o clique nos itens de categoria
     categoryItems.forEach(item => {
-        item.addEventListener('click', async () => {
-            const categoryName = item.querySelector('p').innerText;
-
+        item.addEventListener('click', () => {
+            const categoryName = item.querySelector('p').innerText; // Obtém o nome da categoria
             console.log(`Carregando produtos da categoria: ${categoryName}`);
-
-            try {
-                // Simulação de chamada de API
-                const simulatedResponse = {
-                    ok: true,
-                    json: async () => ([
-                        { id: 101, name: `Produto de ${categoryName} 1` },
-                        { id: 102, name: `Produto de ${categoryName} 2` }
-                    ])
-                };
-
-                if (simulatedResponse.ok) {
-                    const products = await simulatedResponse.json();
-                    console.log('Produtos da categoria simulados:', products);
-                    alert(`Produtos da categoria "${categoryName}" obtidos (simulado).`);
-                } else {
-                    alert('Erro ao carregar produtos desta categoria (simulado).');
-                }
-            } catch (error) {
-                console.error('Falha ao carregar categoria simulada:', error);
-                alert('Erro ao carregar produtos desta categoria.');
-            }
+            // Redireciona para uma página de categoria (simulada)
+            window.location.href = `/categorias/${encodeURIComponent(categoryName.toLowerCase().replace(/\s+/g, '-'))}`;
         });
     });
 
     // Funcionalidade dos botões "Adicionar ao Carrinho"
     addToCartButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const productCard = button.closest('.product-card');
-            const productTitle = productCard.querySelector('.product-title').innerText;
+            const productCard = button.closest('.product-card'); // Encontra o card do produto
+            const productTitle = productCard.querySelector('.product-title').innerText; // Obtém o título do produto
             console.log(`Produto "${productTitle}" adicionado ao carrinho.`);
-            alert(`"${productTitle}" foi adicionado ao seu carrinho!`);
-            // Aqui você enviaria uma requisição para o backend para adicionar o produto ao carrinho do usuário
+
+            // Exibe um pop-up informativo de sucesso
+            displayInfoPopup(`"${productTitle}" foi adicionado ao seu carrinho!`, 'Produto Adicionado');
+
+            // Em um sistema real, aqui você enviaria uma requisição para o backend
+            // para adicionar o produto ao carrinho do usuário e, possivelmente,
+            // atualizar o badge do carrinho na barra de navegação.
         });
     });
 
-    // Funcionalidade do botão "Modo Escuro"
-    darkModeButton.addEventListener('click', () => {
-        body.classList.toggle('dark-mode'); // Adiciona ou remove a classe 'dark-mode' no <body>
-        const isDarkMode = body.classList.contains('dark-mode');
-        darkModeButton.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i> Modo Claro' : '<i class="fas fa-moon"></i> Modo Escuro';
-        document.querySelector('.dark-mode-section h2').innerText = isDarkMode ? 'Dark Mode Ativado' : 'Dark Mode Desativado';
-        console.log(`Modo Escuro: ${isDarkMode ? 'Ativado' : 'Desativado'}`);
-        // Você pode salvar a preferência do usuário em localStorage aqui, para que persista
+    // --- Funcionalidade do Modo Escuro ---
+    // Carrega o estado do modo escuro do localStorage ou define como desativado por padrão
+    const savedDarkModeState = localStorage.getItem('darkMode') || 'disabled';
+    if (savedDarkModeState === 'enabled') {
+        enableDarkMode(); // Ativa o modo escuro se estiver salvo como 'enabled'
+    } else {
+        disableDarkMode(); // Garante que o modo claro esteja ativo por padrão
+    }
+
+    // Listener para o botão de alternância do modo escuro
+    darkModeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+            disableDarkMode(); // Desativa se já estiver ativo
+        } else {
+            enableDarkMode(); // Ativa se estiver no modo claro
+        }
     });
 
+    // Função para ativar o modo escuro
+    function enableDarkMode() {
+        body.classList.add('dark-mode'); // Adiciona a classe 'dark-mode' ao body
+        darkModeToggle.innerHTML = sunIcon; // Muda o ícone do botão para o Sol
+        localStorage.setItem('darkMode', 'enabled'); // Salva a preferência no localStorage
+        console.log('Modo Escuro ativado.');
+    }
 
-    // Redirecionamentos simples para links de navegação
-    accountLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('Redirecionando para a página de Minha Conta.');
+    // Função para desativar o modo escuro
+    function disableDarkMode() {
+        body.classList.remove('dark-mode'); // Remove a classe 'dark-mode' do body
+        darkModeToggle.innerHTML = moonIcon; // Muda o ícone do botão para a Lua
+        localStorage.setItem('darkMode', 'disabled'); // Salva a preferência no localStorage
+        console.log('Modo Escuro desativado.');
+    }
+
+    // --- Função para exibir pop-ups informativos (substitui alertas) ---
+    function displayInfoPopup(message, title = 'Informação') {
+        // Cria um elemento div para o pop-up
+        const popup = document.createElement('div');
+        popup.classList.add('info-popup'); // Adiciona classe CSS para estilização
+
+        // Estrutura do pop-up
+        popup.innerHTML = `
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h3>${title}</h3>
+                    <span class="close-popup">&times;</span>
+                </div>
+                <div class="popup-body">
+                    <p>${message}</p>
+                </div>
+            </div>
+        `;
+
+        // Adiciona o pop-up ao corpo do documento
+        document.body.appendChild(popup);
+
+        // Seleciona o botão de fechar do pop-up recém-criado
+        const closePopupBtn = popup.querySelector('.close-popup');
+        // Adiciona listener para fechar o pop-up
+        closePopupBtn.addEventListener('click', () => {
+            popup.remove(); // Remove o pop-up do DOM
+        });
+
+        // Fecha o pop-up se o usuário clicar fora do conteúdo dele
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) { // Se o clique foi diretamente no fundo do pop-up
+                popup.remove(); // Remove o pop-up
+            }
+        });
+
+        // Opcional: Define um tempo para o pop-up fechar automaticamente após alguns segundos
+        // setTimeout(() => {
+        //     if (popup.parentNode) { // Verifica se o pop-up ainda está no DOM
+        //         popup.remove();
+        //     }
+        // }, 5000); // Fecha após 5 segundos
+    }
+
+    // --- Redirecionamentos simples para links de navegação ---
+    // Estes links são apenas para demonstração e podem ser comentados ou modificados
+    document.querySelector('.nav-links li:nth-child(1) a').addEventListener('click', (e) => {
+        // e.preventDefault(); // Descomente para prevenir o redirecionamento padrão
+        // displayInfoPopup('Redirecionando para sua conta...', 'Minha Conta');
         // window.location.href = '/minha-conta.html';
     });
 
-    cartLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('Redirecionando para o Carrinho de Compras.');
+    document.querySelector('.cart-link a').addEventListener('click', (e) => {
+        // e.preventDefault(); // Descomente para prevenir o redirecionamento padrão
+        // displayInfoPopup('Redirecionando para o carrinho...', 'Carrinho');
         // window.location.href = '/carrinho.html';
     });
-
-    // --- MODO ESCURO ---
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-    const moonIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-    const sunIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
-
-    function enableDarkMode() {
-        body.classList.add('dark-mode');
-        darkModeToggle.innerHTML = sunIcon;
-        localStorage.setItem('darkMode', 'enabled');
-        const darkModeSection = document.querySelector('.dark-mode-section h2');
-        if (darkModeSection) darkModeSection.innerText = 'Dark Mode Ativado';
-    }
-
-    function disableDarkMode() {
-        body.classList.remove('dark-mode');
-        darkModeToggle.innerHTML = moonIcon;
-        localStorage.setItem('darkMode', 'disabled');
-        const darkModeSection = document.querySelector('.dark-mode-section h2');
-        if (darkModeSection) darkModeSection.innerText = 'Dark Mode Desativado';
-    }
-
-    // Estado inicial
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        enableDarkMode();
-    } else {
-        disableDarkMode();
-    }
-
-    // Alternância
-    darkModeToggle.addEventListener('click', () => {
-        if (body.classList.contains('dark-mode')) {
-            disableDarkMode();
-        } else {
-            enableDarkMode();
-        }
-    });
-
-    // Seleciona o formulário de login do modal
-    // const loginForm = document.querySelector('#login-modal form'); // Removido para evitar redeclaração
-    const emailInput = loginForm.querySelector('#email');
-    const passwordInput = loginForm.querySelector('#password');
-
-    // Funções de exibição de erro/sucesso
-    function showError(input, message) {
-        let small = input.parentElement.querySelector('small');
-        if (!small) {
-            small = document.createElement('small');
-            input.parentElement.appendChild(small);
-        }
-        small.textContent = message;
-        input.classList.add('error');
-    }
-
-    function showSuccess(input) {
-        let small = input.parentElement.querySelector('small');
-        if (small) small.textContent = '';
-        input.classList.remove('error');
-    }
-
-    // Validação de e-mail
-    function validateEmail(input) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (re.test(input.value.trim())) {
-            showSuccess(input);
-            return true;
-        } else {
-            showError(input, 'Email inválido');
-            return false;
-        }
-    }
-
-    // Validação de senha
-    function validatePassword(input) {
-        const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-        if (re.test(input.value.trim())) {
-            showSuccess(input);
-            return true;
-        } else {
-            showError(input, 'A senha deve ter no mínimo 8 caracteres, incluindo maiúsculas, minúsculas, números e um caractere especial');
-            return false;
-        }
-    }
-
-    // Validação em tempo real
-    emailInput.addEventListener('input', () => validateEmail(emailInput));
-    passwordInput.addEventListener('input', () => validatePassword(passwordInput));
-
-    // Validação ao enviar
-    loginForm.addEventListener('submit', (e) => {
-        let isFormValid = true;
-        isFormValid = validateEmail(emailInput) && isFormValid;
-        isFormValid = validatePassword(passwordInput) && isFormValid;
-
-        if (!isFormValid) {
-            e.preventDefault();
-        } else {
-            alert('Login simulado com sucesso! (Sem backend)');
-        }
-    });
-});
-
-// --- Modo Escuro --- 
-
-// Seleciona o botão de alternância do modo escuro
-const darkModeToggle = document.getElementById('darkModeToggle');
-// Seleciona o elemento body para aplicar a classe de modo escuro
-const body = document.body;
-// Seleciona os ícones de lua e sol para alternar
-const moonIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-const sunIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
-
-// Função para aplicar o modo escuro
-function enableDarkMode() {
-    body.classList.add('dark-mode'); // Adiciona a classe 'dark-mode' ao body
-    darkModeToggle.innerHTML = sunIcon; // Muda o ícone para o sol
-    localStorage.setItem('darkMode', 'enabled'); // Salva a preferência no localStorage
-}
-
-// Função para desativar o modo escuro
-function disableDarkMode() {
-    body.classList.remove('dark-mode'); // Remove a classe 'dark-mode' do body
-    darkModeToggle.innerHTML = moonIcon; // Muda o ícone para a lua
-    localStorage.setItem('darkMode', 'disabled'); // Salva a preferência no localStorage
-}
-
-// Verifica se o modo escuro estava habilitado ao carregar a página
-if (localStorage.getItem('darkMode') === 'enabled') {
-    enableDarkMode();
-} else {
-    // Se não estiver habilitado, garante que o ícone inicial seja a lua
-    darkModeToggle.innerHTML = moonIcon;
-}
-
-// Adiciona um "event listener" ao botão de alternância
-darkModeToggle.addEventListener('click', () => {
-    // Verifica se o body já tem a classe 'dark-mode'
-    if (body.classList.contains('dark-mode')) {
-        disableDarkMode(); // Se sim, desativa o modo escuro
-    } else {
-        enableDarkMode(); // Se não, ativa o modo escuro
-    }
 });

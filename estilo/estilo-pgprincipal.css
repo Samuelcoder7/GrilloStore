@@ -7,6 +7,10 @@
     --light-text-color: #666;
     --border-color: #dee2e6;
     --bg-color: #f1f2f3;
+    --dark-bg-color: #181a1b; /* Background color for dark mode */
+    --dark-text-color: #e0e0e0; /* Text color for dark mode */
+    --dark-card-bg: #232526; /* Darker background for cards in dark mode */
+    --dark-border-color: #333; /* Darker border color */
 }
 
 /* Base */
@@ -21,11 +25,12 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
+    transition: background-color 0.3s, color 0.3s; /* Transição suave para modo escuro */
 }
 
 a {
     text-decoration: none;
-    color: var(--text-color);
+    color: #ffffff;
 }
 
 /* Header e Navegação */
@@ -53,6 +58,7 @@ a {
     background-color: white;
     padding: 15px 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .nav-container {
@@ -144,6 +150,7 @@ a {
     border-radius: 5px;
     font-weight: 500;
     transition: background-color 0.3s;
+    cursor: pointer; /* Adicionado para todos os botões */
 }
 
 .btn-primary {
@@ -157,11 +164,27 @@ a {
     color: var(--light-text-color);
 }
 
+/* Botão de Inserir CEP no cabeçalho */
+.cep-link a {
+    color: var(--light-text-color);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+.cep-link i {
+    margin-right: 5px;
+    font-size: 1.1rem;
+}
+
+
 .secondary-nav {
     background-color: white;
     padding: 10px 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .btn-green {
@@ -306,23 +329,6 @@ main {
     transform: scale(1.2);
 }
 
-/* Estilos para o Dark Mode no Carrossel */
-body.dark-mode .new-carousel-btn {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
-}
-
-body.dark-mode .new-carousel-btn:hover {
-    background-color: rgba(255, 255, 255, 0.4);
-}
-
-body.dark-mode .new-carousel-dot {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-body.dark-mode .new-carousel-dot.active {
-    background-color: #28a745;
-}
 /* --- FIM NOVO CARROSSEL CSS --- */
 
 
@@ -467,6 +473,9 @@ body.dark-mode .new-carousel-dot.active {
     margin: 60px auto;
     padding: 0 20px;
     text-align: center;
+    display: flex; /* Centraliza os botões */
+    flex-direction: column;
+    align-items: center;
 }
 
 .products-highlight h2 {
@@ -703,7 +712,7 @@ body.dark-mode .new-carousel-dot.active {
 
 .btn-dark-mode:hover {
     background-color: #e0e0e0;
-    color: #28a745; /* Verde do tema */
+    color: var(--primary-color); /* Verde do tema */
 }
 
 /* Rodapé */
@@ -830,7 +839,7 @@ body.dark-mode .new-carousel-dot.active {
 .modal h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #333;
+    color: #ffffff;
 }
 
 .form-group {
@@ -846,8 +855,9 @@ body.dark-mode .new-carousel-dot.active {
 .form-group input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color); /* Usa a cor de borda do tema */
     border-radius: 5px;
+    outline: none; /* Remove o outline padrão */
 }
 
 .modal .btn-primary {
@@ -858,16 +868,21 @@ body.dark-mode .new-carousel-dot.active {
 .modal-link {
     text-align: center;
     margin-top: 15px;
+    color: var(--secondary-color);
 }
 
 /* Estilos do Modo Escuro */
 body.dark-mode {
-    background-color: #181a1b;
-    color: #e0e0e0;
+    background-color: var(--dark-bg-color);
+    color: var(--dark-text-color);
 }
 
-/* Header, Navbar, Secondary Nav, Modal, Cards, Seções */
-body.dark-mode .top-bar,
+/* Aplica estilos escuros a elementos específicos */
+body.dark-mode .top-bar {
+    background-color: var(--primary-color); /* Mantém o verde primário para o top bar */
+    color: white;
+}
+/* Aplica estilos escuros a elementos específicos */
 body.dark-mode .navbar,
 body.dark-mode .secondary-nav,
 body.dark-mode .modal-content,
@@ -877,13 +892,15 @@ body.dark-mode .dark-mode-section,
 body.dark-mode .mega-promo-section,
 body.dark-mode .highlight-categories-small,
 body.dark-mode .main-footer {
-    background-color: #232526;
-    color: #e0e0e0;
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text-color);
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
-
-/* Títulos e textos principais */
-body.dark-mode .logo,
+/* Mantém o logo verde no modo escuro */
+body.dark-mode .logo {
+    color: var(--primary-color); /* Mantém o logo verde */
+}
+/* Ajusta a cor dos textos e ícones no modo escuro */
 body.dark-mode .nav-links a,
 body.dark-mode .nav-links a i,
 body.dark-mode .search-bar i,
@@ -896,16 +913,13 @@ body.dark-mode .dark-mode-section p,
 body.dark-mode .main-footer,
 body.dark-mode .footer-column h3,
 body.dark-mode .footer-column p {
-    color: #e0e0e0;
+    color: #ffffff; /* Cor clara para textos */
 }
 
-/* Cards e botões */
 body.dark-mode .category-item,
 body.dark-mode .product-card,
 body.dark-mode .dark-mode-section {
-    background-color: #232526;
-    color: #e0e0e0;
-    border: 1px solid #333;
+    border: 1px solid var(--dark-border-color);
 }
 
 body.dark-mode .btn,
@@ -913,172 +927,219 @@ body.dark-mode .btn-primary,
 body.dark-mode .btn-green,
 body.dark-mode .btn-green-small,
 body.dark-mode .btn-add-to-cart,
-body.dark-mode .carousel-action-btn,
-body.dark-mode .btn-dark-mode {
-    background-color: #28a745;
+body.dark-mode .carousel-action-btn {
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
 }
 
-body.dark-mode .btn-secondary,
-body.dark-mode .btn-secondary.inverted {
+body.dark-mode .btn-secondary {
     background-color: transparent;
-    color: #e0e0e0;
+    color: #ffffff;
     border: 1px solid #555;
 }
 
 body.dark-mode .btn-dark-mode {
-    background-color: #23272b;
+    background-color: var(--dark-card-bg);
     color: #fff;
 }
 
 body.dark-mode .btn-dark-mode:hover {
-    background-color: #28a745;
+    background-color: var(--primary-color);
     color: #fff;
 }
 
-/* Inputs e campos */
+/* Inputs e campos no modo escuro */
 body.dark-mode .search-bar input,
 body.dark-mode .form-group input {
-    background-color: #232526;
-    border-color: #555;
-    color: #fff;
+    background-color: var(--dark-card-bg);
+    border-color: var(--dark-border-color);
+    color: var(--dark-text-color);
 }
 
 /* Badge do carrinho */
 body.dark-mode .cart-badge {
-    background-color: #28a745;
+    background-color: var(--primary-color);
     color: #fff;
 }
 
 /* Modal */
 body.dark-mode .modal-content {
-    background-color: #232526;
-    color: #e0e0e0;
-    border: 1px solid #333;
+    background-color: var(--dark-card-bg);
+    color: #ffffff;
+    border: 1px solid var(--dark-border-color);
 }
 
-/* Footer */
+/* Footer no modo escuro */
 body.dark-mode .main-footer,
 body.dark-mode .footer-content,
 body.dark-mode .footer-column {
-    background-color: #232526;
-    color: #e0e0e0;
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text-color);
 }
-
+/* Links e ícones no footer */
 body.dark-mode .footer-column a,
 body.dark-mode .social-icons a {
-    color: #e0e0e0;
+    color: var(--dark-text-color);
 }
-
+/* Efeito hover para links no footer */
 body.dark-mode .footer-column a:hover,
 body.dark-mode .social-icons a:hover {
-    color: #28a745;
+    color: var(--primary-color);
 }
 
-/* Carrossel */
+/* Carrossel no modo escuro */
 body.dark-mode .new-carousel-btn {
-    background-color: rgba(40, 167, 69, 0.2);
+    background-color: rgba(40, 167, 69, 0.2); /* Cor verde semi-transparente */
     color: #fff;
 }
-
+/* Efeito hover para botões do carrossel no modo escuro */
 body.dark-mode .new-carousel-btn:hover {
     background-color: rgba(40, 167, 69, 0.4);
 }
-
+/* Dots do carrossel no modo escuro */
 body.dark-mode .new-carousel-dot {
     background-color: rgba(255, 255, 255, 0.3);
 }
-
+/* Dot ativo no modo escuro */
 body.dark-mode .new-carousel-dot.active {
-    background-color: #28a745;
+    background-color: var(--primary-color);
 }
 
-/* Cards de produto */
+/* Cards de produto no modo escuro */
 body.dark-mode .product-card .product-price {
-    color: #28a745;
+    color: var(--primary-color);
 }
 
 body.dark-mode .product-card .product-price .old-price {
-    color: #a0a0a0;
+    color: #ffffff; /* Cor cinza mais clara */
 }
 
 body.dark-mode .wishlist-btn {
-    color: #a0a0a0;
+    color: #ffffff;
 }
 
 body.dark-mode .wishlist-btn:hover {
-    color: #28a745;
+    color: var(--primary-color);
 }
 
-/* Seção Mega Promoção */
+/* Seção Mega Promoção no modo escuro */
 body.dark-mode .mega-promo-section {
-    background-color: #232526;
-    color: #e0e0e0;
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text-color);
 }
 
 body.dark-mode .flash-sale-tag {
-    background-color: #28a745;
+    background-color: var(--primary-color);
     color: #fff;
 }
 
 body.dark-mode .btn-secondary.inverted {
-    background-color: #232526;
+    background-color: var(--dark-card-bg);
     color: #fff;
-    border: 1px solid #28a745;
+    border: 1px solid var(--primary-color);
 }
 
 body.dark-mode .btn-secondary.inverted:hover {
-    background-color: #28a745;
+    background-color: var(--primary-color);
     color: #fff;
 }
 
-/* Modal close button */
+/* Botão de fechar modal no modo escuro */
 body.dark-mode .close-btn {
-    color: #e0e0e0;
+    color: var(--dark-text-color);
 }
 
 body.dark-mode .close-btn:hover,
 body.dark-mode .close-btn:focus {
-    color: #28a745;
+    color: var(--primary-color);
 }
 
-/* Ajuste para textos secundários */
+/* Ajuste para textos secundários no modo escuro */
 body.dark-mode .product-category,
 body.dark-mode .product-rating span,
 body.dark-mode .category-item span,
 body.dark-mode .promo-description,
 body.dark-mode .timer {
-    color: #a0a0a0;
+    color: #ffffff; /* Cor cinza para textos secundários */
 }
 
 /* Estilo para o container do botão dark mode */
 .darkmode-container {
     display: flex;
     align-items: center;
-    margin-left: 20px; /* Espaço à esquerda, ajuste conforme necessário */
+    margin-left: 20px; /* Espaço à esquerda */
 }
 
-/* Botão dark mode */
-.btn-dark-mode {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px 10px;
+/* Estilos específicos para o formulário de CEP */
+#cep-modal .modal-content {
+    max-width: 450px; /* Ajusta a largura do modal de CEP */
+}
+
+#cep-modal h2 {
+    font-size: 1.5rem;
+}
+
+#cep-modal p {
+    text-align: center;
+    color: var(--light-text-color);
+    margin-bottom: 20px;
+}
+
+#cep-modal form .form-group input[type="text"] {
+    background-color: white; /* Garante fundo branco para inputs em modo claro */
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+body.dark-mode #cep-modal form .form-group input[type="text"] {
+    background-color: var(--dark-card-bg);
+    border-color: var(--dark-border-color);
+    color: var(--dark-text-color);
+}
+
+#cep-modal label {
+    color: var(--text-color); /* Cor padrão para labels */
+}
+
+body.dark-mode #cep-modal label {
+    color: var(--dark-text-color); /* Cor do label no modo escuro */
+}
+
+/* Botão flutuante de ajuda */
+.bottom-right-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    transition: background-color 0.3s, color 0.3s;
-    color: #333; /* Cor padrão do ícone */
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 100;
+    transition: background-color 0.3s;
 }
 
-/* Textos do formulário do modal de login no dark mode */
-body.dark-mode .modal-content,
-body.dark-mode .modal-content label,
-body.dark-mode .modal-content input,
-body.dark-mode .modal-content h2,
-body.dark-mode .modal-content .modal-link,
-body.dark-mode .modal-content .modal-link a {
-    color: #fff;
+.bottom-right-icon:hover {
+    background-color: #218838;
+}
+
+body.dark-mode .bottom-right-icon {
+    background-color: var(--primary-color); /* Mantém a cor primária */
+}
+/*
+ Aqui crie a classe para a imagem do grilo no logo
+  
+*/
+.grilo-logo img {
+    width: 15%; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+    vertical-align: middle; /* Alinha a imagem com o texto */
+    margin-right: 10px; /* Espaço entre a imagem e o texto */
 }
