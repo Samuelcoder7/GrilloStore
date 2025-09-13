@@ -18,9 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('darkMode', 'disabled');
     };
 
-    // Verifica a preferência salva no carregamento
+    // Verifica a preferência salva ao carregar a página
     if (localStorage.getItem('darkMode') === 'enabled') {
         enableDarkMode();
+    } else {
+        disableDarkMode();
     }
 
     darkModeToggle.addEventListener('click', () => {
@@ -62,18 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const validatePassword = (input) => {
-    // Regex para verificar todos os critérios
-    const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-
-    if (re.test(input.value.trim())) {
-        showSuccess(input);
-        return true;
-    } else {
-        showError(input, 'A senha deve ter no mínimo 8 caracteres, incluindo letras maiúsculas, minúsculas, números e um caractere especial');
-        return false;
-    }
-};
-
+        const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+        if (re.test(input.value.trim())) {
+            showSuccess(input);
+            return true;
+        } else {
+            showError(input, 'A senha deve ter no mínimo 8 caracteres, incluindo letras maiúsculas, minúsculas, números e um caractere especial');
+            return false;
+        }
+    };
 
     // Eventos para validação em tempo real
     emailInput.addEventListener('input', () => validateEmail(emailInput));

@@ -17,9 +17,7 @@ const estado = document.getElementById('estado');
 const numero = document.getElementById('numero');
 
 // Botão de Modo Escuro
-const darkModeToggle = document.getElementById('darkModeToggle');
-const body = document.body;
-const darkModeIcon = darkModeToggle.querySelector('i');
+// (Removido: variáveis já declaradas anteriormente)
 
 // Spans de erro
 const errorSpans = {
@@ -297,14 +295,39 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Lógica para o Modo Escuro
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+const darkModeIcon = darkModeToggle.querySelector('i');
+
+// Função para ativar o modo escuro
+function enableDarkMode() {
+    body.classList.add('dark-mode');
+    darkModeIcon.classList.remove('fa-moon');
+    darkModeIcon.classList.add('fa-sun');
+    localStorage.setItem('darkMode', 'enabled');
+}
+
+// Função para desativar o modo escuro
+function disableDarkMode() {
+    body.classList.remove('dark-mode');
+    darkModeIcon.classList.remove('fa-sun');
+    darkModeIcon.classList.add('fa-moon');
+    localStorage.setItem('darkMode', 'disabled');
+}
+
+// Verifica o estado salvo ao carregar a página
+if (localStorage.getItem('darkMode') === 'enabled') {
+    enableDarkMode();
+} else {
+    disableDarkMode();
+}
+
+// Alterna o modo ao clicar no botão
 darkModeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
     if (body.classList.contains('dark-mode')) {
-        darkModeIcon.classList.remove('fa-moon');
-        darkModeIcon.classList.add('fa-sun');
+        disableDarkMode();
     } else {
-        darkModeIcon.classList.remove('fa-sun');
-        darkModeIcon.classList.add('fa-moon');
+        enableDarkMode();
     }
 });
 
