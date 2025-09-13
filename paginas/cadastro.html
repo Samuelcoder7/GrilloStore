@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - DropLoja</title>
+    <title>Cadastro - Grillo Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../estilo/estilo-cadastro.css">
-    <script src="../script/script-cadastro.js" defer></script>
 </head>
 <body>
 
     <header class="auth-header">
-        <div class="logo">
-            <i class="fas fa-shopping-cart"></i> DropLoja
+        <a href="Principal.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </a>
+        <div class="logo-container">
+            <i class="fas fa-shopping-cart"></i> Grillo Store
         </div>
         <button id="darkModeToggle" class="btn-dark-mode" aria-label="Alternar modo claro/escuro">
             <i class="fas fa-moon"></i>
@@ -55,38 +57,6 @@
                     <span class="error-message" id="cpfError"></span>
                 </div>
                 <div class="form-group">
-                    <label for="cep">CEP:</label>
-                    <input type="text" id="cep" name="cep" maxlength="9" required placeholder="00000-000">
-                    <span class="error-message" id="cepError"></span>
-                </div>
-                <div id="enderecoGroup" class="hidden">
-                    <div class="form-group">
-                        <label for="endereco">Endereço:</label>
-                        <input type="text" id="endereco" name="endereco" required readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="bairro">Bairro:</label>
-                        <input type="text" id="bairro" name="bairro" required readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="cidade">Cidade:</label>
-                        <input type="text" id="cidade" name="cidade" required readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="estado">Estado:</label>
-                        <input type="text" id="estado" name="estado" required readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="numero">Número:</label>
-                        <input type="text" id="numero" name="numero" required placeholder="Nº">
-                        <span class="error-message" id="numeroError"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="complemento">Complemento (apto, bloco, etc.):</label>
-                        <input type="text" id="complemento" name="complemento" placeholder="Apto, bloco, etc.">
-                    </div>
-                </div>
-                <div class="form-group">
                     <label for="telefone">Telefone:</label>
                     <input type="tel" id="telefone" name="telefone" maxlength="15" required placeholder="(00) 00000-0000">
                     <span class="error-message" id="telefoneError"></span>
@@ -125,6 +95,6 @@
         </div>
     </footer>
     
-    <script src="script.js"></script>
+    <script src="../script/script-cadastro.js"></script>
 </body>
 </html>

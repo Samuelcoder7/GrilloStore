@@ -1,8 +1,8 @@
 /*
- * -----------------------------------
- * Estilos da Página de Cadastro (Dedicada)
- * -----------------------------------
- */
+* -----------------------------------
+* Estilos da Página de Cadastro (Dedicada)
+* -----------------------------------
+*/
 
 :root {
     --primary-color: #28a745;
@@ -23,6 +23,10 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background-color 0.3s, color 0.3s;
+    position: relative; /* Necessário para o posicionamento absoluto do botão de voltar */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 a {
@@ -31,27 +35,30 @@ a {
 }
 
 /*
- * -----------------------------------
- * Cabeçalho e Botão de Modo Escuro
- * -----------------------------------
- */
+* -----------------------------------
+* Cabeçalho e Botão de Modo Escuro
+* -----------------------------------
+*/
 
 .auth-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Espaça a logo e o botão de dark mode */
     align-items: center;
     padding: 20px 40px;
     background-color: var(--header-bg-color);
     border-bottom: 1px solid var(--border-color);
+    position: relative; /* Permite posicionar elementos ABSOLUTOS DENTRO dele */
 }
 
-.logo {
+.logo-container { /* Novo container para a logo */
     font-size: 1.8rem;
     font-weight: bold;
     color: var(--primary-color);
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-grow: 1; /* Permite que a logo ocupe o espaço disponível */
+    justify-content: center; /* Centraliza a logo */
 }
 
 .btn-dark-mode {
@@ -68,10 +75,40 @@ a {
 }
 
 /*
- * -----------------------------------
- * Estilos do Formulário
- * -----------------------------------
- */
+* -----------------------------------
+* Estilos do Botão de Voltar
+* -----------------------------------
+*/
+
+.back-link {
+    position: absolute; /* Posiciona em relação ao .auth-header */
+    top: 50%; /* Começa no meio do header */
+    left: 40px; /* Distância da esquerda */
+    transform: translateY(-50%); /* Ajusta para centralizar verticalmente */
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 10; /* Garante que fique acima de outros elementos */
+}
+
+.back-link:hover {
+    color: var(--primary-color);
+}
+
+.back-link i {
+    font-size: 1.5em;
+}
+
+/*
+* -----------------------------------
+* Estilos do Formulário
+* -----------------------------------
+*/
 
 .auth-page {
     display: flex;
@@ -79,6 +116,7 @@ a {
     align-items: center;
     justify-content: center;
     padding: 50px 20px;
+    flex-grow: 1; /* Faz com que o main ocupe o espaço restante */
 }
 
 .auth-card {
@@ -216,16 +254,17 @@ a {
 }
 
 /*
- * -----------------------------------
- * Estilos do Rodapé
- * -----------------------------------
- */
+* -----------------------------------
+* Estilos do Rodapé
+* -----------------------------------
+*/
 
 .main-footer {
     background-color: var(--primary-color);
     color: white;
     padding: 40px 20px;
     font-size: 0.9em;
+    margin-top: auto; /* Empurra o footer para o final da página */
 }
 
 .footer-content {
@@ -271,10 +310,10 @@ a {
 }
 
 /*
- * -----------------------------------
- * Estilos do Dark Mode
- * -----------------------------------
- */
+* -----------------------------------
+* Estilos do Dark Mode
+* -----------------------------------
+*/
 
 body.dark-mode {
     --bg-color: #121212;
