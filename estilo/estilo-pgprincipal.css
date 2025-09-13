@@ -1071,5 +1071,14 @@ body.dark-mode .timer {
     justify-content: center;
     transition: background-color 0.3s, color 0.3s;
     color: #333; /* Cor padrão do ícone */
-    font-size: 1.2em;
+}
+
+/* Textos do formulário do modal de login no dark mode */
+body.dark-mode .modal-content,
+body.dark-mode .modal-content label,
+body.dark-mode .modal-content input,
+body.dark-mode .modal-content h2,
+body.dark-mode .modal-content .modal-link,
+body.dark-mode .modal-content .modal-link a {
+    color: #fff;
 }
