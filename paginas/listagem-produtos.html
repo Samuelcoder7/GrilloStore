@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Grilo Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../estilo/style-listagem.css">
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="top-bar-content">
+                <div class="left-text">
+                    <p>Entrega rápida para todo o Brasil!</p>
+                </div>
+                <div class="right-text">
+                    <p>Fale Conosco <i class="fas fa-phone"></i></p>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="nav-container">
+               <!-- Aqui adcione a imagem do grilo e edita para ficar de acordo com o bloco de estilo -->
+                 <div class="grilo-logo">
+                    <img src="../imagem-grilo/grilo.png"> Grillo Store
+                </div>
+
+                <div class="search-bar">
+                    <input type="text" placeholder="Pesquisar produtos..." id="searchInput">
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="#" class="btn btn-primary" id="loginLink">Entrar</a></li>
+                    <li><a href="#" class="cep-link" id="cepLink"><i class="fas fa-map-marker-alt"></i> Insira seu CEP</a></li>
+                    <li class="cart-link">
+                        <a href="#" id="cartLink"><i class="fas fa-shopping-cart"></i> Carrinho</a>
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </li>
+                    <li class="darkmode-container">
+                        <button id="darkModeToggle" class="btn-dark-mode">
+                             </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="product-listing">
+            <div class="product-listing-header">
+                <h2>Todos os Produtos</h2>
+                <p>Confira nossa seleção de produtos de alta qualidade.</p>
+            </div>
+            
+            <div class="product-grid" id="productGrid">
+                <a href="produto-detalhe.html" class="product-card-link" data-id="1">
+                    <div class="product-card" data-category="eletronicos">
+                        <span class="product-badge">NOVO</span>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 1" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Eletrônicos</p>
+                            <h3 class="product-title">Smartphone X Pro 128GB</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.0)</span>
+                            </div>
+                            <p class="product-price">R$ 2.500,00 <span class="old-price">R$ 2.999,00</span></p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="produto-detalhe.html" class="product-card-link" data-id="2">
+                    <div class="product-card" data-category="casa-cozinha">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 2" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Casa & Cozinha</p>
+                            <h3 class="product-title">Cafeteira Elétrica Premium</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(5.0)</span>
+                            </div>
+                            <p class="product-price">R$ 250,00</p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="produto-detalhe.html" class="product-card-link" data-id="3">
+                    <div class="product-card" data-category="esportes">
+                        <span class="product-badge">OFERTA</span>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 3" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Esportes</p>
+                            <h3 class="product-title">Tênis de Corrida Ultra Leve</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.5)</span>
+                            </div>
+                            <p class="product-price">R$ 380,00 <span class="old-price">R$ 450,00</span></p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="produto-detalhe.html" class="product-card-link" data-id="4">
+                    <div class="product-card" data-category="livros">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 4" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Livros</p>
+                            <h3 class="product-title">A Arte da Programação</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(5.0)</span>
+                            </div>
+                            <p class="product-price">R$ 95,00</p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="produto-detalhe.html" class="product-card-link" data-id="5">
+                    <div class="product-card" data-category="jardinagem">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 5" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Jardinagem</p>
+                            <h3 class="product-title">Kit Ferramentas para Jardim</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.2)</span>
+                            </div>
+                            <p class="product-price">R$ 120,00</p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="produto-detalhe.html" class="product-card-link" data-id="6">
+                    <div class="product-card" data-category="games">
+                        <span class="product-badge">OFERTA</span>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 6" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Games</p>
+                            <h3 class="product-title">Console de Última Geração</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.8)</span>
+                            </div>
+                            <p class="product-price">R$ 2.999,00 <span class="old-price">R$ 3.500,00</span></p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="produto-detalhe.html" class="product-card-link" data-id="7">
+                    <div class="product-card" data-category="moda">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 7" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Moda</p>
+                            <h3 class="product-title">Jaqueta de Couro Sintético</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.1)</span>
+                            </div>
+                            <p class="product-price">R$ 189,00</p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="produto-detalhe.html" class="product-card-link" data-id="8">
+                    <div class="product-card" data-category="beleza">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 8" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Beleza</p>
+                            <h3 class="product-title">Kit de Maquiagem Profissional</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(5.0)</span>
+                            </div>
+                            <p class="product-price">R$ 145,00</p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="produto-detalhe.html" class="product-card-link" data-id="9">
+                    <div class="product-card" data-category="acessorios">
+                        <span class="product-badge">NOVO</span>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 9" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Acessórios</p>
+                            <h3 class="product-title">Fone de Ouvido sem Fio</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(4.7)</span>
+                            </div>
+                            <p class="product-price">R$ 350,00</p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="produto-detalhe.html" class="product-card-link" data-id="10">
+                    <div class="product-card" data-category="decoracao">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 10" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Decoração</p>
+                            <h3 class="product-title">Luminária de Mesa Design</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(3.8)</span>
+                            </div>
+                            <p class="product-price">R$ 89,00</p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="produto-detalhe.html" class="product-card-link" data-id="11">
+                    <div class="product-card" data-category="moveis">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 11" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Móveis</p>
+                            <h3 class="product-title">Mesa de Escritório Ergonômica</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.5)</span>
+                            </div>
+                            <p class="product-price">R$ 750,00</p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="produto-detalhe.html" class="product-card-link" data-id="12">
+                    <div class="product-card" data-category="eletronicos">
+                        <span class="product-badge">OFERTA</span>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 12" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Eletrônicos</p>
+                            <h3 class="product-title">Relógio Inteligente Esportivo</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(5.0)</span>
+                            </div>
+                            <p class="product-price">R$ 520,00 <span class="old-price">R$ 600,00</span></p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="produto-detalhe.html" class="product-card-link" data-id="13">
+                    <div class="product-card" data-category="brinquedos">
+                        <span class="product-badge">NOVO</span>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 13" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Brinquedos</p>
+                            <h3 class="product-title">Blocos de Construção Criativos</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.8)</span>
+                            </div>
+                            <p class="product-price">R$ 110,00</p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="produto-detalhe.html" class="product-card-link" data-id="14">
+                    <div class="product-card" data-category="esportes">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 14" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Esportes</p>
+                            <h3 class="product-title">Kit de Pesca Completo</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(3.9)</span>
+                            </div>
+                            <p class="product-price">R$ 280,00</p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="produto-detalhe.html" class="product-card-link" data-id="15">
+                    <div class="product-card" data-category="beleza">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 15" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Beleza</p>
+                            <h3 class="product-title">Secador de Cabelo Profissional</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(5.0)</span>
+                            </div>
+                            <p class="product-price">R$ 180,00</p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="produto-detalhe.html" class="product-card-link" data-id="16">
+                    <div class="product-card" data-category="games">
+                        <span class="product-badge">OFERTA</span>
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                        <img src="https://via.placeholder.com/280" alt="Produto 16" class="product-image">
+                        <div class="product-info">
+                            <p class="product-category">Games</p>
+                            <h3 class="product-title">Controle Sem Fio para PC</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.2)</span>
+                            </div>
+                            <p class="product-price">R$ 150,00 <span class="old-price">R$ 190,00</span></p>
+                            <button class="btn-add-to-cart">Adicionar ao Carrinho</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <a href="#" class="logo">Grilo Store</a>
+                <p>A loja online completa para suas necessidades. Encontre produtos de alta qualidade com os melhores preços do mercado.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Atendimento ao Cliente</h3>
+                <ul>
+                    <li><a href="#">Central de Ajuda</a></li>
+                    <li><a href="#">Política de Devolução</a></li>
+                    <li><a href="#">Rastrear Pedido</a></li>
+                    <li><a href="#">Envio e Entrega</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Sobre a Grilo Store</h3>
+                <ul>
+                    <li><a href="#">Nossa História</a></li>
+                    <li><a href="#">Carreiras</a></li>
+                    <li><a href="#">Termos de Serviço</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Pagamento</h3>
+                <p>Aceitamos todas as principais bandeiras de cartão de crédito e débito, além de Pix e boleto bancário.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="bottom-right-icon">
+        <i class="fas fa-question-circle"></i>
+    </div>
+    
+    <div id="cep-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeCepModal">&times;</span>
+            <div class="modal-header">
+                <h2>Verificar Entrega</h2>
+            </div>
+            <div class="modal-body">
+                <p>Digite seu CEP para calcular o prazo e custo da entrega.</p>
+                <form id="cep-form">
+                    <div class="form-group">
+                        <label for="cepInput">CEP</label>
+                        <input type="text" id="cepInput" placeholder="Ex: 00000-000">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="checkCepBtn">Verificar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeCartModal">&times;</span>
+            <div class="modal-header">
+                <h2>Seu Carrinho</h2>
+            </div>
+            <div class="modal-body">
+                <div id="cart-items" class="cart-items-list">
+                    <p class="empty-cart-message">Seu carrinho está vazio.</p>
+                </div>
+                <div class="cart-total-info">
+                    <p>Total: <span id="cart-total">R$ 0,00</span></p>
+                </div>
+                <button class="btn btn-primary btn-checkout">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeLoginModal">&times;</span>
+            <div class="modal-header">
+                <h2>Entrar na Conta</h2>
+            </div>
+            <div class="modal-body">
+                <p>Faça login para ter acesso a mais funcionalidades!</p>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="email">E-mail ou Usuário</label>
+                        <input type="text" id="email" placeholder="Digite seu e-mail ou usuário">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" placeholder="Digite sua senha">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <p class="modal-link">Não tem conta? <a href="#">Crie uma aqui!</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../script/script-listagem.js"></script>
+
+</body>
+</html>
