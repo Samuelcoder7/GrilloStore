@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">Kit 4 Camisetas Feminina Academia - Grillo Store</title>
+    <title id="page-title">Câmera instantânea Fujifilm Instax Kit Mini 12 + 10 fotos lilac purple - Grillo Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../estilo/style-produto.css">
-    <!-- favicon -->
+    <!--favicon-->
     <link rel="icon" type="image/x-icon" href="../../imagem/grilo.png">
 </head>
 <body>
+    
+    <div id="notification-popup">
+        Produto adicionado com sucesso!
+    </div>
+    
     <header class="header">
         <div class="header-content">
-            <a href="listagem.html" class="logo">Grillo Store</a>
+            <a href="listagem-produtos.html" class="logo">Grillo Store</a>
             <div class="header-actions">
                 <button id="darkModeToggle" class="dark-mode-button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
@@ -24,47 +29,78 @@
         </div>
     </header>
 
+    <div class="cart-flyout" id="cart-flyout">
+        <div class="flyout-content-wrapper">
+            <div class="flyout-header">
+                <h3>Seu Carrinho</h3>
+                <button class="close-flyout" id="close-cart-flyout">&times;</button>
+            </div>
+            <div class="flyout-body">
+                <p>Seu carrinho está vazio.</p>
+            </div>
+            <div class="flyout-footer">
+                <div class="flyout-actions">
+                    <button class="back-button" id="continue-shopping">Continuar Comprando</button>
+                    <a href="#" class="checkout-button">Finalizar Compra</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <main class="product-page-container">
-        <a href="../../paginas/listagem-produtos.html" class="back-button">
+        <a href="listagem-produtos.html" class="back-button">
             &larr; Voltar para a página de produtos
         </a>
         
-        <div class="product-content-wrapper">
-            
+            <main class="product-page-container">
+         <a href="../../paginas/listagem-produtos.html" class="back-button">
+            &larr; Voltar para a página de produtos
+         </a>
+
+         <div class="product-content-wrapper">
+             
             <div class="product-images">
                 <div class="thumbnail-gallery" id="thumbnail-gallery">
-                <!--Aqui coloque as umagens de camisa -->    
-                    <img src="../../imagens-produtos/imagem/camisa1fem.jpg" alt="Kit 4 Camisetas Feminina Academia - Atacado" class="thumbnail-image" data-full="../../imagens-produtos/imagem/camisa1fem.jpg">
-                    <img src="../../imagens-produtos/imagem/camisa2fem.jpg" alt="Kit 4 Camisetas Feminina Academia - Atacado" class="thumbnail-image" data-full="../../imagens-produtos/imagem/camisa2fem.jpg">
-                    <img src="../../imagens-produtos/imagem/camisa3fem.jpg" alt="Kit 4 Camisetas Feminina Academia - Atacado" class="thumbnail-image" data-full="../../imagens-produtos/imagem/camisa3fem.jpg">
-                    <img src="../../imagens-produtos/imagem/camisa4fem.jpg" alt="Kit 4 Camisetas Feminina Academia - Atacado" class="thumbnail-image" data-full="../../imagens-produtos/imagem/camisa4fem.jpg">
-                </div>
+                    <img src="../../imagens-produtos/pola1.jpg" alt="Câmera instantânea Fujifilm Instax Kit Mini 12 + 10 fotos lilac purple" class="thumbnail-image" data-full="../../imagens-produtos/imagem/pola1.jpg">
+                    <img src="../../imagens-produtos/pola2.jpg" alt="Câmera instantânea Fujifilm Instax Kit Mini 12 + 10 fotos lilac purple" class="thumbnail-image" data-full="../../imagens-produtos/imagem/pola2.jpg">
+                    <img src="../../imagens-produtos/pola3.jpg" alt="Câmera instantânea Fujifilm Instax Kit Mini 12 + 10 fotos lilac purple" class="thumbnail-image" data-full="../../imagens-produtos/imagem/pola3.jpg">
+                    <img src="../../imagens-produtos/pola4.jpg" alt="Câmera instantânea Fujifilm Instax Kit Mini 12 + 10 fotos lilac purple" class="thumbnail-image" data-full="../../imagens-produtos/imagem/pola4.jpg">
+                    </div>
                 <div class="main-image-container">
-                   <img src="../../imagens-produtos/imagem/camisa1fem.jpg" alt="Kit 4 Camisetas Feminina Academia - Atacado" class="main-product-image" id="main-product-image">
+                    <img src="../imagem/pola1.jpg" alt="Câmera instantânea Fujifilm Instax Kit Mini 12 + 10 fotos lilac purple" class="main-product-image" id="main-product-image">
                 </div>
             </div>
-             
 
             <div class="product-info-details">
-                <h1 class="product-title" id="product-title"></h1>
+                <h1 class="product-title" id="product-title">Câmera instantânea Fujifilm Instax Kit Mini 12 + 10 fotos lilac purple</h1>
                 <div class="price-section">
                     <p class="price-label">À vista</p>
-                    <p class="price-value" id="price-value"></p>
-                    <p class="installments" id="installments-text"></p>
+                    <p class="price-value" id="price-value">R$  535,00</p>
+                    <p class="installments" id="installments-text">ou 18x de R$ 31,06 sem juros</p>
                     <a href="#" class="payment-methods-link">ver meios de pagamento</a>
                 </div>
 
                 <div class="product-specs">
-                    <p class="spec-color" id="product-color">Cor: <span class="spec-value" id="product-color-value"></span></p>
+                    <p class="spec-color" id="product-color">Cor: <span class="spec-value" id="product-color-value">Preto e Branco (Cores Variadas)</span></p>
                     <h2 class="specs-title">O que você precisa saber sobre este produto</h2>
                     <ul class="specs-list" id="specs-list">
-                        </ul>
+                        <li>Lente de 60mm com abertura máxima de f/12.7 para ótimas fotos.</li>
+
+                        <li>Sensibilidade ISO 800 para melhores capturas em diversas luzes.</li>
+
+                        <li>Modo Close-up para fotos a 30-50cm, perfeito para selfies.</li>
+
+                        <li>Visor ajustável que garante enquadramento preciso.</li>
+
+                        <li>Peso leve de 306g, ideal para transporte.</li>
+                    </ul>
                 </div>
             </div>
+
             <aside class="purchase-sidebar">
                 <div class="sidebar-price-block">
                     <div class="current-price-display">
-                        <span class="current-price" id="current-price-sidebar"></span>
+                        <span class="current-price" id="current-price-sidebar">R$  535,00</span>
                         <label class="price-option-radio">
                             <input type="radio" name="priceOption" checked>
                         </label>
@@ -72,7 +108,7 @@
                     <p class="free-shipping">Frete Grátis a cima de R$19</p>
                     <p class="delivery-estimate">Chega entre Quarta-feira e Quinta-feira</p>
                     <div class="installments-display">
-                        <span class="installment-amount" id="installment-amount-sidebar"></span>
+                        <span class="installment-amount" id="installment-amount-sidebar">18x de R$ 31,06</span>
                         <span class="installment-details" id="installment-details-sidebar">sem juros</span>
                         <label class="price-option-radio">
                             <input type="radio" name="priceOption">
@@ -99,7 +135,7 @@
                 </div>
 
                 <div class="seller-info">
-                    <p>Vendido por: <span class="seller-name" id="seller-name"></span></p>
+                    <p>Vendido por: <span class="seller-name" id="seller-name">Básicos</span></p>
                 </div>
             </aside>
         </div>
@@ -130,8 +166,8 @@
                 </div>
                 <div class="footer-col">
                     <h3 class="footer-title">Redes Sociais</h3>
-                    <div class="social-links">                  
-                        <a href="#">Instagram</a>  
+                    <div class="social-links">                         
+                        <a href="#">Instagram</a>                         
                     </div>
                 </div>
             </div>
@@ -141,26 +177,7 @@
         </div>
     </footer>
 
-    <div id="notification-popup"></div>
-
-    <div class="cart-flyout" id="cart-flyout">
-        <div class="flyout-content-wrapper">
-            <div class="flyout-header">
-                <h3>Meu Carrinho (0 itens)</h3>
-                <button class="close-flyout" id="close-cart-flyout">&times;</button>
-            </div>
-            <div class="flyout-body">
-                <p>O carrinho está vazio. Adicione itens para continuar.</p>
-            </div>
-            <div class="flyout-footer">
-                <div class="flyout-actions">
-                    <button class="back-button-modal" id="continue-shopping">Continuar Comprando</button>
-                    <a href="#" class="checkout-button">Finalizar Compra</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <script src="../../script/script-produtos/script-produto2.js"></script>
+   <!--colocar script.js abaixo-->
+   
 </body>
 </html>
